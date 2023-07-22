@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	"os"
 )
 
 func main() {
-	d, err := ioutil.ReadFile("../write/output.txt")
+	d, err := os.ReadFile("../write/output.txt")
 	if err != nil {
 		fmt.Printf("Error: %s", err)
 	}

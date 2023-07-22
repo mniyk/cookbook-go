@@ -6,13 +6,7 @@ import (
 )
 
 func main() {
-	file, err := os.Create("output.txt")
-	if err != nil {
-		fmt.Printf("Error: %s", err)
-	}
-	defer file.Close()
-
-	_, err = file.WriteString("Hello World!")
+	err := os.WriteFile("output.txt", []byte("Hello World!"), 0644)
 	if err != nil {
 		fmt.Printf("Error: %s", err)
 	}

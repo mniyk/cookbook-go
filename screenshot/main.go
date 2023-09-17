@@ -15,6 +15,7 @@ func main() {
 
 	if err := os.Mkdir(tm, 0777); err != nil {
 		fmt.Printf("Error: %s", err)
+		os.Exit(1)
 	}
 
 	n := screenshot.NumActiveDisplays()
@@ -24,7 +25,8 @@ func main() {
 
 		img, err := screenshot.CaptureRect(bounds)
 		if err != nil {
-			panic(err)
+			fmt.Printf("Error: %s", err)
+			os.Exit(1)
 		}
 
 		x := bounds.Dx()

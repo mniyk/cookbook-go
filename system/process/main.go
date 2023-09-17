@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"syscall"
 	"unsafe"
 )
@@ -10,6 +11,7 @@ func main() {
 	handle, err := syscall.CreateToolhelp32Snapshot(syscall.TH32CS_SNAPPROCESS, 0)
 	if err != nil {
 		fmt.Printf("Error: %s", err)
+		os.Exit(1)
 	}
 	defer syscall.CloseHandle(handle)
 
@@ -17,6 +19,7 @@ func main() {
 	pe32.Size = uint32(unsafe.Sizeof(pe32))
 	if err := syscall.Process32First(handle, &pe32); err != nil {
 		fmt.Printf("Error: %s", err)
+		os.Exit(1)
 	}
 
 	for {
